@@ -37,7 +37,7 @@ At the beginning e will cover some basics on HTML and Command Line. Apologies to
 
 Web scraping is pulling or extracting data from webpages, their HTML files. 
 
-### Web Xcraping vs using APIs
+### Web Scraping vs using APIs
 - API - application programming interface, allowing you to talk to an app, request data
 - both are about getting data from websites, resources
 - except, APIs are created by the data holders, more efficient, with ready JSON, XML
@@ -71,7 +71,7 @@ Once you have python & pip, let's check you have the rest of the python packages
 % pip install lxml
 ```
  
-## up and running with HTML & Command Line
+# up and running with HTML & Command Line
 
 This workshop assumes basic familiarity with python, HTML, and the command line. In the case that you do *not* have this knowledge, I highly recommend reading through these GC Digital Humanities Research Institute materials:
 
@@ -126,7 +126,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 If this is confusing for you, make sure you check out the Command Line tutorial above.
 
-# quick start into bs4
+## quick start into bs4
 
 Now we have an interactive shell, let's see jump into bs4 to see what we can do. First, we will import the package, then we will create a beautiful soup object. Inside that object, we will include some HTML.
 
