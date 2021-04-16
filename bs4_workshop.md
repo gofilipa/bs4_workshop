@@ -8,10 +8,10 @@ Python(bs4)"
 This workshop is sponsored by the Graduate Center Digital Initiatives, and in particular, the Digital Fellows. GCDI offers different kinds of support for digital scholarship in the GC. Some of the more popular resources we offer are regular workshops (like this one), consultations, working groups based around common tools or data sources (such as python, R, mapping, digital archives, sound studies, data visualization), special events (check our calendar!) and online resources.
 
 Some ways to get involved:
-- Sign up for a ![consultation](https://docs.google.com/forms/d/e/1FAIpQLSeLEski53U3FjArac-bVU0jYwxYD0HQTvNSQUxIZWoxbqDPWg/viewform) to speak to a fellow about your digital project.
+- Sign up for a [consultation](https://docs.google.com/forms/d/e/1FAIpQLSeLEski53U3FjArac-bVU0jYwxYD0HQTvNSQUxIZWoxbqDPWg/viewform) to speak to a fellow about your digital project.
 - Check the Event Calendar for upcoming events and workshops: cuny.is/workshops
-- Follow GCDI or the Digital Fellows on Twitter: ![@cunygcdi](https://twitter.com/cunygcdi) and ![digital_fellows](https://twitter.com/digital_fellows).
-- Follow (and post to!) the ![#digitalGC](https://twitter.com/search?q=%23digitalgc&src=typed_query) hashtag on Twitter
+- Follow GCDI or the Digital Fellows on Twitter: [@cunygcdi](https://twitter.com/cunygcdi) and [digital_fellows](https://twitter.com/digital_fellows).
+- Follow (and post to!) the [#digitalGC](https://twitter.com/search?q=%23digitalgc&src=typed_query) hashtag on Twitter
 - Join the GCDI Group on the CUNY Academic Commons for all GCDI-related updates! cuny.is/group-gcdi
 
 Please check out our other workshops, consultations, working groups 
@@ -23,21 +23,39 @@ In short, bs4 is a Python library for "web scraping," or pulling data out of HTM
 
 ## note on structure
 
-I will be sharing my screen, demonstrating how to do things. You might follow along by watching, or typing as I type, if this topic is very new or confusing, just watch for now. Occasionally, there will be time for practice, where I give you time to replicate what I am doing.
+I will be sharing my screen, demonstrating how to do things. You might follow along by watching, or typing as I type. However, if this topic is very new or confusing, I strongly recommend that you just watch for now. If you are not comfortable with Python, you will likely get errors if you try to type as I type, which can be frustrating. 
+
+There will be time for you to practice--I've structured this into the session. You will have a few minutes to replicate what I'm doing before we move on.
 
 And do not worry about falling behind, all of the code that I type is saved to a separate file (this one!), so you're not going to miss anything.
 
 Rafa and Steve are here to help out. Rafa on the chat to answer questions, Steve mostly for aesthetics. If you have any questions, please put them in the chat, or feel free to speak up and interrupt me as well.
 
-First, we will cover
+Throughout the workshop, we will:
+- define Web Scraping, distinguishing it from other data gathering methods like APIs
+- quickly review HTML basics (apologies to those more advanced users, but it's necessary to get the most engagement for the group)
+- jump into using bs4 for exploring web pages
+- learning about various functions and methods for bs4, going into some specificity
+- using bs4 to write loops and scripts to automate searching for data
+- exploring browser tools for identifying elements to scrape from websites
+- exporting our scraped data to csv files (spreadsheets)
+- exposure to other scraping tools/methods, particularly for social media
 
-At the beginning e will cover some basics on HTML and Command Line. Apologies to those more advanced users, but it's necessary to get the most engagement for the group.
+By this end of this workshop, you will have a python script that can grab data from a website and export that data into a CSV file. 
+
+Let's get started. 
 
 ## what is Web Scraping?
 
-Web scraping is pulling or extracting data from webpages, their HTML files. 
+Web scraping is pulling or extracting data from webpages. 
 
-### Web Xcraping vs using APIs
+In the most simple explanation, Web Scraping is going into a website, and pulling the information from those websites. This data is in the form of HTML files.
+
+## what is bs4? 
+
+bs4 is short for `Beautiful Soup 4`, a python package that allows us to work with HTML data. In very abstract terms, bs4 uses python syntax to access HTML objects. In more familiar terms, this means that we are using the python language and its way of organizing and asking for data to get information from pages written in HTML.
+
+### Web Scraping vs using APIs
 - API - application programming interface, allowing you to talk to an app, request data
 - both are about getting data from websites, resources
 - except, APIs are created by the data holders, more efficient, with ready JSON, XML
@@ -45,7 +63,7 @@ Web scraping is pulling or extracting data from webpages, their HTML files.
 - Web Scraping is when you pull data directly from the website. Then you convert it
 - Web Scraping is more work, more coding, with less support from the source
 
-### Some considerations:
+### some considerations:
 
 If there is an API that returns JSON, XML, use that before scraping. 
 
@@ -55,29 +73,23 @@ There are potential legal issues with web scraping if a website doesn't allow it
 
 ## required software
 
-Install python and pip 
-
-Click here to install our recommended python distribution, ![Anaconda](https://www.anaconda.com/products/individual). Scroll to the bottom of the page, and click the relevant version for your machine.
-
-Click here to ![install pip](https://pip.pypa.io/en/stable/reference/pip_install/) (python package manager, ie allows you to install python libraries like bs4). 
-
-This part might take a few minutes, so be patient. 
+Install python. Click here to install our recommended python distribution, [Anaconda](https://www.anaconda.com/products/individual). Scroll to the bottom of the page, and click the relevant version for your machine. This part might take a few minutes, so be patient. 
  
-Once you have python & pip, let's check you have the rest of the python packages: requests (for requesting data over the web), bs4 (the beautiful soup 4 package), and lxml (the recommended parser for bs4).
+Once you have python, let's check you have the rest of the python packages: requests (for requesting data over the web), bs4 (the beautiful soup 4 package), and lxml (the recommended parser for bs4).
 
 ```console
 % pip install requests
 % pip install bs4
 % pip install lxml
 ```
- 
-## up and running with HTML & Command Line
+
+## HTML refresher
 
 This workshop assumes basic familiarity with python, HTML, and the command line. In the case that you do *not* have this knowledge, I highly recommend reading through these GC Digital Humanities Research Institute materials:
 
-- DHRI workshop on ![the Command Line](https://curriculum.dhinstitutes.org/workshops/command-line/) (complete lessons 1-6, through "Navigation")
-- DHRI workshop on ![HTML/CSS](https://curriculum.dhinstitutes.org/workshops/html-css/) (complete lessons 1-6, through "Links")
-- DHRI workshop on ![Python](https://curriculum.dhinstitutes.org/workshops/python/) (complete lessons 1-7, through "Loops")
+- DHRI workshop on [the Command Line](https://curriculum.dhinstitutes.org/workshops/command-line/) (complete lessons 1-6, through "Navigation")
+- DHRI workshop on [HTML/CSS](https://curriculum.dhinstitutes.org/workshops/html-css/) (complete lessons 1-6, through "Links")
+- DHRI workshop on [Python](https://curriculum.dhinstitutes.org/workshops/python/) (complete lessons 1-7, through "Loops")
 
 Just as a refresher, I'm going to  sample HTML file. We will be paying attention to **head** elements, including the **title**, **h1**, **h2** tags, and the **body** elements, including **a** and **p** tags, as well as some attributes like **class** and **href**. 
 
@@ -104,11 +116,9 @@ This is the basic structure of the HTML document, which tells the computer how t
 
 If this looks overwhelming to you, make sure you check out the HTML workshop linked above. 
 
-Now to the Command Line. On your computer, the Command Line might be Terminal (if you have a Mac) or Powershell or Gitbash (if you have Windows). 
+# quick start: exploring bs4
 
-Once you've opened your command line program, type `pwd` to check what directory you are inside (in other words, where you are on your computer). You're likely in the home folder. Go ahead and navigate to your Desktop or Documents folder (wherever you like to work on new projects). For me, I have to type `cd Desktop` to get to my desktop folder. 
-
-Once we are in our desired directory, we can enter the Python interactive mode (ie, the Python shell, or Python interpreter, as it's also known). We enter this mode by typing "python" at the `%` (or `$`, depending on your computer) prompt. 
+To begin playing around with bs4, let's start a python interactive session:
 
 ```console
 % python
@@ -125,8 +135,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 If this is confusing for you, make sure you check out the Command Line tutorial above.
-
-# quick start into bs4
 
 Now we have an interactive shell, let's see jump into bs4 to see what we can do. First, we will import the package, then we will create a beautiful soup object. Inside that object, we will include some HTML.
 
@@ -149,9 +157,9 @@ In concise terms, we've created a beautiful soup object `soup` which contains at
 Let's take an initial look into what this beautiful soup object can do. It takes the HTML source, the specific HTML elelements or "tags," and makes it possible for us to access those tags using python syntax. 
 
 ```console
->>> soup.p # prints paragraph
->>> soup.b # prints bolded text
->>> soup.body # prints entire body element
+>>> soup.i
+>>> soup.b
+>>> soup.p
 ```
 
 Using python syntax to access HTML elements is beautiful soup in a nutshell. 
@@ -160,13 +168,14 @@ Using python syntax to access HTML elements is beautiful soup in a nutshell.
 
 One of the more impressive things about beautiful soup is how much it can do with just a few lines of code. We can scrape an entire webpage, for example. 
 
-I'll show you how it's done with the ![New York Times](https://www.nytimes.com/) website.
+I'll show you how it's done with the [New York Times](https://www.nytimes.com/) website.
 
 First, activate your python shell. Then import your packages. Afterward, we have three lines of code that grab and save website data, and create a beautiful soup object which we can query.  
 
 ```console
 >>> import requests
 >>> from bs4 import BeautifulSoup
+>>> import lxml
 
 >>> webpage = requests.get("https://www.nytimes.com")
 >>> source = webpage.content
@@ -179,6 +188,19 @@ Then, we save all page content to source variable in the `source` variable.
 
 Finally, we pass `source` to the `BeautifulSoup` class, alson with `'lxml'`, to create the soup object.
 
+At this point, you may get an error. Especially happens when you are trying to type something word for word, when you might make a mistake. Below is an example of an error when calling `BeautifulSoup`:
+
+````console
+>>> soup = beautifulsoup(source, 'lxml')
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'beautifulsoup' is not defined
+>>> 
+```
+This error gives us an insight into what's going on. Check the error message: `name 'beautifulsoup' is not defined` which tells us that python doesn't recognize the line of code. This means we are probably typing something wrong, and we are. In this case we forgot to capitalize the "B" and "S" in beautiful soup, which is necessary since that's the syntax for writing python classes (and BeautifulSoup is a class). 
+
+Once we fix the errors, we can start to look at this `BeautifulSoup` object, the `soup`, which we created. 
+
 We can print the entire thing (the `soup` object) in our terminal with one more line of code, which includes the `prettify()` function.
 
 ```console
@@ -188,18 +210,35 @@ We can print the entire thing (the `soup` object) in our terminal with one more 
 This is pretty overwhelming, because it's the entire source HTML for the front page of the New York Times. But there are other ways we can access the elements with specificity. 
 
 We can get the webpage title:
+
 ```console
 >>> soup.find('title')
 ```
 
-We can also search just the readable text, getting rid of all the html tags. 
+We can also search just the readable text, getting rid of all the html tags:
+
 ```console
 >>> soup.get_text()
 ```
 
+### a note on syntax
+
+Here you'll notice that there are multiple ways for accessing `soup` elements. The python syntax offers us options. For example, We might use the `find()` function, to access the title, like `soup.find('title')`, or we can access the title attribute, using dot syntax, like `soup.title`. 
+
+See how the two different syntax examples return the same result?
+
+```console
+>>> soup.find('title')
+<title data-rh="true">The New York Times - Breaking News, US News, World News and Videos</title>
+>>> soup.title
+<title data-rh="true">The New York Times - Breaking News, US News, World News and Videos</title>
+```
+
+The difference between the two is the difference between functions and attributes. It's not super important now, though it can be as you write more complex python expressions and scripts. 
+
 ## practice time! 
 
-Now you try replicating this process in your terminal. Write your own script for a website, using any URL you want.
+Now take a few minutes to try replicating this process in your terminal. Write your own script for a website, using any URL you want.
 
 Practice accessing attributes like `title` and using functions like `get_text()` and `prettify()`.
 
@@ -380,9 +419,11 @@ This kind of thing is useful because then we can automate the process of getting
 ```console
 from bs4 import BeautifulSoup
 import requests
+import lxml
 
-source = requests.get('https://www.nytimes.com')
-soup = BeautifulSoup(source.content, 'lxml')
+webpage = requests.get('https://www.nytimes.com')
+source = webpage.content
+soup = BeautifulSoup(source, 'lxml')
 
 def scrape_headings():
     headers = soup.find_all('h3')
@@ -404,9 +445,13 @@ Now we are going to learn how to use web browser tools to help us write scripts 
 
 Open up a web browser, go to the New York Times website. Right click on a headline, any headline, and select `inspect element` (or whatever option is closest to that phrase in your menu).
 
-A new window will pop up within your browser window. This window may appear overwhelming, but it's just a little look 'under the hood' of the website. This is the best tool for scraping, because it allows us to 'inspect' html elements. 
+A new window will pop up within your browser window. This window may appear overwhelming, but it's just a little look 'under the hood' of the website. 
+
+This is the best tool for scraping, because it allows us to 'inspect' html elements. 
 
 As I pan over different lines of code, you can see that some areas of the webpage are highlighted. Those are the parts that correspond to the code. 
+
+It's important to reinforce how inscrutible a lot of those code is. I have no idea what's going on in 90 percent of this page, but that doesn't mean I cannot work with it and scrape it. The inspector tool is key here, you can explore the page and see what's going on under the hood.
 
 Whenever you are scraping a webpage, you should spend some time looking in the inspector to see what you aare looking at. Looking at these elements, we see that all of the headlines and text blurbs are contained by a class, `story-wrapper`.
 
@@ -516,29 +561,29 @@ You have now learned the basic steps of pulling data, organizing it, and saving 
 
 The next steps is to analyze that data. For that, you have several choices, such as text analysis with NLTK (natural langauge toolkit), or data analysis with pandas (python data anlaysis & manipulation), which are not covered in this workshop. But we do have resources on these!
 
-Check out our other workshops:
-
-![Text Analysis with NLTK workshop](https://curriculum.dhinstitutes.org/workshops/text-analysis/)
-
-![Data Analysis with Pandas workshop](https://digitalfellows.commons.gc.cuny.edu/2021/04/09/exploring-data-with-python-and-pandas/)
-
-# sources
-
-![Beautiful Soup 4 docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
-
-![Beautiful Soup 4 on PiPy](https://pypi.org/project/beautifulsoup4/)
-
-![Corey's Schafer's YouTube tutorial, from html to csv](https://www.youtube.com/watch?v=ng2o98k983k)
-
-![Real Python's web scrapping with bs4 tutorial](https://realpython.com/python-web-scraping-practical-introduction/)
-
 # next steps
 
-Here are some other tutorials specifically for web scraping social media. 
+First, be sure to check out our other workshops:
 
-![Scraping reddit into JSON format](https://www.scrapehero.com/a-beginners-guide-to-web-scraping-part-2-build-a-scraper-for-reddit/). 
+[Text Analysis with NLTK workshop](https://curriculum.dhinstitutes.org/workshops/text-analysis/)
+
+[Data Analysis with Pandas workshop](https://digitalfellows.commons.gc.cuny.edu/2021/04/09/exploring-data-with-python-and-pandas/)
+
+Here are some other tutorials, specifically for web scraping social media. 
+
+[Scraping reddit into JSON format](https://www.scrapehero.com/a-beginners-guide-to-web-scraping-part-2-build-a-scraper-for-reddit/). 
 Script (with walkthrough) on how to scrape data from Reddit. 
 Although reddit also has a handy ![api](https://www.reddit.com/dev/api/). 
 
-![Instagram-scraper](https://github.com/arc298/instagram-scraper). 
+[Instagram-scraper](https://github.com/arc298/instagram-scraper). 
 Module for scraping instagram that outputs automatically into JSON file. 
+
+# sources
+
+[Beautiful Soup 4 docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
+
+[Beautiful Soup 4 on PiPy](https://pypi.org/project/beautifulsoup4/)
+
+[Corey's Schafer's YouTube tutorial, from html to csv](https://www.youtube.com/watch?v=ng2o98k983k)
+
+[Real Python's web scrapping with bs4 tutorial](https://realpython.com/python-web-scraping-practical-introduction/)

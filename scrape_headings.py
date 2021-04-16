@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
+import lxml
 
-source = requests.get('https://www.nytimes.com')
-soup = BeautifulSoup(source.content, 'lxml')
+webpage = requests.get('https://www.nytimes.com')
+source = webpage.content
+soup = BeautifulSoup(source, 'lxml')
 
 def scrape_headings():
     headers = soup.find_all('h3')
