@@ -190,7 +190,7 @@ Finally, we pass `source` to the `BeautifulSoup` class, alson with `'lxml'`, to 
 
 At this point, you may get an error. Especially happens when you are trying to type something word for word, when you might make a mistake. Below is an example of an error when calling `BeautifulSoup`:
 
-````console
+```console
 >>> soup = beautifulsoup(source, 'lxml')
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
