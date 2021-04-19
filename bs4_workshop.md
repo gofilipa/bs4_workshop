@@ -333,7 +333,7 @@ Let's save the link text to a variable, `link_text`:
 >>> print(link_text)
 ```
 
-## ['attr']
+## ['href']
 
 In addition to text, we can also get the attributes. Attributes are additional data that is contained within the HTML tag, like `href`, which stands for hyperlink reference. This is the link's URL. To access the attributes like `href`, we use the syntax: `tag['attr']`.
 
@@ -463,9 +463,11 @@ This kind of thing is useful because then we can automate the process of getting
 
 In breakout groups, write a loop so it prints the paragraphs `<p>` of nyt. Change up the variable names as well, so that they reflect that we are looking for paragraphs and not headings. 
 
-# inspecting pages to access classes
+# inspecting pages
 
 Now we are going to learn how to use web browser tools to help us write scripts for scraping websites. Specifically, we are going to look for information we need in order to get data from the links on the New York Times homepage. We want to get data about the links, the text of each link, and the URL for each link. Our goal is to write a script that will grab the link data and URL data from the homepage. 
+
+## inspect element
 
 Open up a web browser, go to the New York Times website. Right click on a headline, any headline, and select `inspect element` (or whatever option is closest to that phrase in your menu).
 
@@ -478,6 +480,8 @@ It's important to reinforce how inscrutible a lot of this code is. I have no ide
 Let's inspect the headline again, paying close attention to what is around it. We notice that on this page, the link tag `a` is actually wrapping around the headline element `h3`. This makes sense, because clicking on any part of the headline (or the area of the headline) will automatically take us to the linked article. 
 
 As we continue to inspect the headline area, another thing we notice is that it's contained by a series of `<divs>`, so many of them, and also by a single `<section>` element, which contains a class, `story-wrapper`. If we look at other headlines, we will that all of the, are contained by this class, `story-wrapper`.
+
+## classes, text, attributes
 
 In our case, we want to scrape the text from these headlines. Using the `story-wrapper` class seems like the best way to go, because it encloses the link text and the link URL. Whenever you are scraping a webpage, you should spend some time looking in the inspector to see what you are looking at.
 
@@ -530,7 +534,11 @@ Additionally, if we want the text that goes with the link (the part that we see 
 
 To sum up, so far: we have been using the `story-wraper` class to access data from this webpage. We have been able to get the text that goes with the `story-wrapper` class itself, and the `a` tag (with `a.text`), as well as the specific URL from the `['href']` attribute (with `a['href']`. 
 
-## creating a list to loop through elements by classs
+# final activity
+
+Now that we have what we need, we are going to create a little script that loops through NYT data to pull out the headlines and links, and output that data to a spreadsheet (csv file) for further analysis.
+
+## looping through a class
 
 Pulling together everything we've learned so far, we could now write ourselves a loop that grabs all of the links from this page `a['href']`, as well as a loop that gets just the headlines associated with the links `a.text`.
 
@@ -547,7 +555,7 @@ Let's first create a story_wrapper object, which contains a list of all story_wr
 
 Now we can see in the terminal output a nice little list of all our headlines with the links that are anchored to them.
 
-# print to csv file
+## print to csv file
 
 All of this scraping is great, but we should also think about way to work with the data we create. In order to do that, we need to save the data to a workable format, like CSV (comma separated values, a spreadsheet).
 
