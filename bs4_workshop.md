@@ -549,7 +549,7 @@ Let's first create a story_wrapper object, which contains a list of all story_wr
 >>> story_wrappers = soup.find_all(class_ = "story-wrapper")
 
 >>> for item in story_wrappers:
-		print(item.a.text)
+        print(item.a.text)
         print(item.a['href']
 ```
 
