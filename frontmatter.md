@@ -1,5 +1,7 @@
 # Frontmatter
 
+Skip to [Workshop](bs4_workshop.md).
+
 ## Abstract
 
 This workshop goes over how to web scrape using python library, Beautiful Soup 4, or bs4. In short, bs4 is a Python library for "web scraping," or pulling data out of HTML and XML files. It allows people to take information, including text and images, from websites. It's often used for taking all kinds of data, like news, financial, sports, social media data. Once we take this data, we usually put it into a format like JSON or CSV (spreadsheet) for further analysis. In this workshop, we will be using bs4 to scrape news data from the New York Times website. By this end of this workshop, you will have a python script that can grab data from a website and export that data into a CSV file. Then, at the very end, I will show you a couple of other ways to scrape websites, that go beyond bs4, for scraping social media.
@@ -7,7 +9,6 @@ This workshop goes over how to web scrape using python library, Beautiful Soup 4
 ## Learning Objectives
 
 In this workshop, participants will:
-
 
 - discuss Web Scraping, distinguishing it from other data gathering methods like APIs
 - quickly review the basics of HTML (for those who need a refresher)
@@ -49,6 +50,10 @@ Always consider the human element of who you are scraping. Is it ethical to work
 - [Real Python's web scrapping with bs4 tutorial](https://realpython.com/python-web-scraping-practical-introduction/)
 - [Beautiful Soup 4 docs](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
-## Acknowledgements
+## License
 
-- Filipa Calado
+Workshop leader: Filipa Calado, Graduate Center Digital Fellows
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+
+[Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).

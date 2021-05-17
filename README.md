@@ -1,5 +1,7 @@
 # Introduction to Web Scraping with Python (bs4)
 
+Skip to [Frontmatter](frontmatter.md).
+
 This workshop introduces web scraping with Python library bs4. It can be taught asynchronously or synchronously, as its own workshop or as part of the Python track on the digital institutes.
 
 ## Credits
@@ -25,3 +27,10 @@ Feedback was very good. Students thought the pace and content was effective.
 ## Needed/Desired Changes 
 There is some interest in expanding this workshop into a two or three part web scraping series. 
 
+## License
+
+Workshop leader: Filipa Calado, Graduate Center Digital Fellows
+
+[![Creative Commons License](https://i.creativecommons.org/l/by-sa/4.0/88x31.png)](http://creativecommons.org/licenses/by-sa/4.0/)
+
+[Creative Commons Attribution-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-sa/4.0/).
