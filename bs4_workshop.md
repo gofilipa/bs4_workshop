@@ -430,7 +430,7 @@ Then we write the loop - for each item in the list, print the text of that item.
 ```console
 >>> for item in headers:
         print(item.text)
-```	 
+```
 
 ## scrape_headings.py
 
@@ -438,7 +438,7 @@ Let's make our little script more efficient -- let's create a function that grab
 
 Open a new file, save it as `scrape_headings.py`, and write the following lines of code: 
 
-```console
+```python
 from bs4 import BeautifulSoup
 import requests
 import lxml
@@ -472,6 +472,8 @@ Now we are going to learn how to use web browser tools to help us write scripts 
 Open up a web browser, go to the New York Times website. Right click on a headline, any headline, and select `inspect element` (or whatever option is closest to that phrase in your menu).
 
 A new window will pop up within your browser window. This window may appear overwhelming, but it's just a little look 'under the hood' of the website. 
+
+![image of "inspector" on new york times website](inspector.png)
 
 This is the best tool for web scraping, or any kind of web development work, because it allows us to 'inspect' html elements. As I pan over different lines of code, you can see that some areas of the webpage become highlighted. Those are the parts that correspond to the code. 
 
